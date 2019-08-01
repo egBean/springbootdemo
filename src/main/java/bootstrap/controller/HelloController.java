@@ -29,7 +29,7 @@ public class HelloController {
 
 
 
-    @GetMapping("/")
+    @GetMapping("/fff")
     public String home(){
         System.out.println("fff");
         /*try {
@@ -44,10 +44,10 @@ public class HelloController {
         } catch (SQLException e) {
             e.printStackTrace();
         }*/
-        List<People> peoples = peopleMapper.selectAll();
+        /*List<People> peoples = peopleMapper.selectAll();
         peoples.forEach(p -> {
             System.out.println(JSON.toJSONString(p));
-        });
+        });*/
         return "hello boot!!!";
     }
 }
