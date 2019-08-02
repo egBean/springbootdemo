@@ -37,16 +37,15 @@ public class HelloController {
 
 
     @GetMapping("/")
-    public String index(){
-        jedisUtil.set("boot","tttt");
+    public String index(String type){
+        /*jedisUtil.set("boot","tttt");
         System.out.println(jedisUtil.get("boot"));
         jedisUtil.expire("boot",5);
         Map<String,Object> map = new HashMap<>();
         map.put("name","laowang");
         map.put("age",18);
 
-        jedisUtil.hmset("people",map);
-        Map<Object, Object> people = jedisUtil.hgetAll("people");
+        jedisUtil.hmset("people",map);*/
         return "index";
     }
 
