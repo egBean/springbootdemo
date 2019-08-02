@@ -4,6 +4,10 @@ import bootstrap.domain.People;
 import bootstrap.mapper.PeopleMapper;
 import bootstrap.util.JedisUtil;
 import com.alibaba.fastjson.JSON;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -22,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@Api("hello类测试")
 public class HelloController {
     
     @Autowired
@@ -36,7 +41,7 @@ public class HelloController {
     private JedisUtil jedisUtil;
 
 
-    @GetMapping("/")
+    @GetMapping("/a")
     public String index(String type){
         /*jedisUtil.set("boot","tttt");
         System.out.println(jedisUtil.get("boot"));
@@ -53,7 +58,9 @@ public class HelloController {
 
     @GetMapping("/fff")
     @ResponseBody
-    public String home(){
+    @ApiOperation(value = "方法描述", notes = "测试使用")
+    @ApiImplicitParam(name = "type",value = "类型")
+    public String home(String type){
         System.out.println("fff");
         /*try {
             Connection conn = dataSource.getConnection();
