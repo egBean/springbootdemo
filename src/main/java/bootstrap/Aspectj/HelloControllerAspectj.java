@@ -5,6 +5,9 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
+/**
+ * 顺序：环绕前，before，环绕后，after。
+ */
 @Aspect
 @Component
 public class HelloControllerAspectj {
