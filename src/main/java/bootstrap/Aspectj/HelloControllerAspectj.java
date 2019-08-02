@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class HelloControllerAspectj {
 
-    @Pointcut("execution(public * bootstrap.controller.HelloController.*(..))")
+    @Pointcut("execution(public * bootstrap.controller.HelloController.index(..))")
     public void m1(){
         System.out.println("这个啥时候执行?");
     }
