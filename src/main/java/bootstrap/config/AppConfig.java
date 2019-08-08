@@ -85,13 +85,13 @@ public class AppConfig extends WebMvcConfigurationSupport {
     }
 
 
-    @Bean
+    /*@Bean
     public ViewResolver getViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setPrefix("/WEB-INF/");
         resolver.setSuffix(".jsp");
         return resolver;
-    }
+    }*/
 
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {

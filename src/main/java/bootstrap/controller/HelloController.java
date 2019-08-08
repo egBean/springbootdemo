@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -52,6 +53,14 @@ public class HelloController {
 
         jedisUtil.hmset("people",map);*/
         return "index";
+    }
+    @GetMapping("/leaf")
+    public ModelAndView leaf(){
+        People p = new People("老王",19);
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("people",p);
+        mv.setViewName("people");
+        return mv;
     }
 
 
