@@ -37,13 +37,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <!--<exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>-->
-
         </dependency>
 
         <dependency>
@@ -205,22 +198,6 @@
             </plugin>
 
         </plugins>
-
-
-        <!--<resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/webapp</directory>
-                &lt;!&ndash;注意此次必须要放在此目录下才能被访问到 &ndash;&gt;
-                <targetPath>META-INF/resources</targetPath>
-                <includes>
-                    <include>**/**</include>
-                </includes>
-            </resource>
-        </resources>-->
 
     </build>
 

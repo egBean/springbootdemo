@@ -8,6 +8,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -18,13 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @Api("hello类测试")
@@ -41,6 +36,8 @@ public class HelloController {
     @Autowired
     private JedisUtil jedisUtil;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger("testLogger");
+
 
     @GetMapping("/a")
     public String index(String type){
@@ -52,6 +49,14 @@ public class HelloController {
         map.put("age",18);
 
         jedisUtil.hmset("people",map);*/
+
+        return "index";
+    }
+    @GetMapping("/log")
+    @ResponseBody
+    public String log(){
+        LOGGER.debug("debug!!!!");
+        LOGGER.trace("trace");
         return "index";
     }
     @GetMapping("/leaf")
