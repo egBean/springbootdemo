@@ -214,10 +214,10 @@
     <logger name="java.sql.PreparedStatement" level="DEBUG"/>
 
     <springProfile name="dev">
-        <logger name="testLogger" level="debug" >
+        <!--<logger name="testLogger" level="debug" >
             <appender-ref ref="test"/>
-            <!--<appender-ref ref="CONSOLE"/>-->
-        </logger>
+            &lt;!&ndash;<appender-ref ref="CONSOLE"/>&ndash;&gt;
+        </logger>-->
         <root level="info">
             <appender-ref ref="CONSOLE" />
         </root>
