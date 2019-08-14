@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.env.Environment;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +36,8 @@ public class HelloController {
     private People p;
     @Autowired
     private JedisUtil jedisUtil;
+    @Autowired
+    private Environment environment;
 
     private static final Logger LOGGER = LoggerFactory.getLogger("testLogger");
 
@@ -47,16 +50,15 @@ public class HelloController {
         Map<String,Object> map = new HashMap<>();
         map.put("name","laowang");
         map.put("age",18);
-
         jedisUtil.hmset("people",map);*/
 
         return "index";
     }
-    @GetMapping("/log")
+    @GetMapping("/")
     @ResponseBody
     public String log(){
-        LOGGER.debug("debug!!!!");
-        LOGGER.trace("trace");
+        System.out.println(environment.getProperty("server.port"));
+        System.out.println(environment.getProperty("name"));
         return "index";
     }
     @GetMapping("/leaf")
