@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.env.Environment;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,11 +55,15 @@ public class HelloController {
 
         return "index";
     }
+
+    /**
+     * transactional 注解的timeout属性，是指最后一个sql语句开始的时间距离方法开始的时间+sql本身执行的时间(待测试)
+     * @return
+     */
     @GetMapping("/")
     @ResponseBody
+    @Transactional
     public String log(){
-        System.out.println(environment.getProperty("server.port"));
-        System.out.println(environment.getProperty("name"));
         return "index";
     }
     @GetMapping("/leaf")
