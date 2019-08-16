@@ -7,6 +7,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.HashMap;
 import java.util.Map;
+
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -50,7 +51,7 @@ public class RSAUtil {
         SecureRandom secureRandom = new SecureRandom();
         //获得对象 KeyPairGenerator 参数 RSA 512个字节
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
-        keyPairGen.initialize(512,secureRandom);
+        keyPairGen.initialize(512, secureRandom);
         //通过对象 KeyPairGenerator 获取对象KeyPair
         KeyPair keyPair = keyPairGen.generateKeyPair();
 
@@ -72,6 +73,7 @@ public class RSAUtil {
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicBytes);
         return KeyFactory.getInstance(KEY_ALGORITHM).generatePublic(keySpec);
     }
+
     //获取私钥对象
     private static PrivateKey getPrivateKey(String privateKey) throws Exception {
         byte[] privateBytes = decodeBASE64(privateKey);
@@ -82,12 +84,13 @@ public class RSAUtil {
 
     /**
      * 私钥生成签名
+     *
      * @param privateKey
      * @param bytes
      * @return
      * @throws Exception
      */
-    public static String sign(String privateKey,byte[] bytes) throws Exception {
+    public static String sign(String privateKey, byte[] bytes) throws Exception {
         PrivateKey privateKeyObj = getPrivateKey(privateKey);
         Signature signature = Signature.getInstance(SIGNATURE_ALGORITHM);
         signature.initSign(privateKeyObj);
@@ -97,12 +100,13 @@ public class RSAUtil {
 
     /**
      * 公钥验签
+     *
      * @param publicKey
      * @param bytes
      * @return
      * @throws Exception
      */
-    public static boolean verify(String publicKey,String sign,byte[] bytes) throws Exception {
+    public static boolean verify(String publicKey, String sign, byte[] bytes) throws Exception {
         PublicKey publicKeyObj = getPublicKey(publicKey);
         Signature signature = Signature.getInstance(SIGNATURE_ALGORITHM);
         signature.initVerify(publicKeyObj);
@@ -112,24 +116,23 @@ public class RSAUtil {
 
     /**
      * 公钥加密
+     *
      * @param bytes
      * @param publicKey
      * @return
      * @throws Exception
      */
-    public static String encryptByPublicKey(byte[] bytes,String publicKey) throws Exception {
-        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(decodeBASE64(publicKey));
-        PublicKey publicKeyObj = KeyFactory.getInstance(KEY_ALGORITHM).generatePublic(keySpec);
+    public static String encryptByPublicKey(byte[] bytes, String publicKey) throws Exception {
+        PublicKey publicKeyObj = getPublicKey(publicKey);
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, publicKeyObj);
         byte[] output = cipher.doFinal(bytes);
         return encodeBASE64(output);
     }
 
-    public static byte[] decryptByPirvateKey(String msg,String privateKey) throws Exception {
+    public static byte[] decryptByPirvateKey(String msg, String privateKey) throws Exception {
 
-        PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(decodeBASE64(privateKey));
-        PrivateKey privateKeyObj = KeyFactory.getInstance(KEY_ALGORITHM).generatePrivate(pkcs8KeySpec);
+        PrivateKey privateKeyObj = getPrivateKey(privateKey);
 
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, privateKeyObj);
@@ -143,15 +146,14 @@ public class RSAUtil {
             keyMap = initKey();
             String publicKey = getPublicKey(keyMap);
             String privateKey = getPrivateKey(keyMap);
-
             //验签测试
-            /*String temp = "hello world";
+            String temp = "老王";
             String sign = sign(privateKey, temp.getBytes("utf-8"));
-            System.out.println(verify(publicKey,sign,temp.getBytes("utf-8")));*/
+            System.out.println(verify(publicKey, sign, temp.getBytes("utf-8")));
 
             //加密测试
-            String temp = "hello worldabc";
-            String msg = encryptByPublicKey(temp.getBytes("utf-8"), publicKey);
+            String temp2 = "hello worldabc";
+            String msg = encryptByPublicKey(temp2.getBytes("utf-8"), publicKey);
             byte[] bytes = decryptByPirvateKey(msg, privateKey);
             System.out.println(new String(bytes,"utf-8"));
 
@@ -160,7 +162,6 @@ public class RSAUtil {
             e.printStackTrace();
         }
     }
-
 
 
 }
