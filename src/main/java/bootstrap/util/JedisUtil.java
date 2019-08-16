@@ -31,7 +31,7 @@ public class JedisUtil {
         return entries;
     }
 
-    public void expire(String key,long times){
-        redisTemplate.expire(key,times, TimeUnit.SECONDS);
+    public void expire(String key,long seconds){
+        redisTemplate.expire(key,seconds, TimeUnit.SECONDS);
     }
 }
