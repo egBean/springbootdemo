@@ -10,11 +10,11 @@ import java.util.Properties;
 
 public class SendMail {
     //发件人地址
-    public static String senderAddress = "1358404767@qq.com";
+    public static String senderAddress = "send@qq.com";
     //收件人地址
-    public static String recipientAddress = "15700060543@163.com";
+    public static String recipientAddress = "recip@163.com";
     //发件人账户名
-    public static String senderAccount = "1358404767";
+    public static String senderAccount = "send";
     //发件人账户密码
     public static String senderPassword = "password";
 
@@ -37,7 +37,7 @@ public class SendMail {
             //4、根据session对象获取邮件传输对象Transport
             Transport transport = session.getTransport();
             //设置发件人的账户名和密码,此处改成授权码
-            transport.connect(senderAccount, "kwrldjgktbtwfegh");
+            transport.connect(senderAccount, "authword");
             //发送邮件，并发送到所有收件人地址，message.getAllRecipients() 获取到的是在创建邮件对象时添加的所有收件人, 抄送人, 密送人
             transport.sendMessage(msg,msg.getAllRecipients());
 
