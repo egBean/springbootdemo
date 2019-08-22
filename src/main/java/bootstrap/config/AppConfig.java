@@ -5,6 +5,7 @@ import bootstrap.interceptor.MyInterceptor;
 import com.alibaba.druid.pool.DruidDataSource;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -31,6 +32,8 @@ public class AppConfig extends WebMvcConfigurationSupport {
     private String url;
     @Value("${spring.datasource.driver-class-name}")
     private String driverName;
+    @Autowired
+    private MyInterceptor myInterceptor;
 
 
     @Bean("druid")
@@ -48,7 +51,7 @@ public class AppConfig extends WebMvcConfigurationSupport {
 
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new MyInterceptor()).addPathPatterns("/");
+        registry.addInterceptor(myInterceptor).addPathPatterns("/**");
     }
 
 
