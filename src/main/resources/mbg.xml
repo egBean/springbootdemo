@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
     <!-- 引入外部属性文件 -->
-    <properties resource="application.properties" />
+    <properties resource="application-dev.properties" />
 
     <context id="Mysql" targetRuntime="MyBatis3Simple"
              defaultModelType="flat">
@@ -59,6 +59,6 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
 
         </table>-->
-        <table tableName="%"></table>
+        <table tableName="user"></table>
     </context>
 </generatorConfiguration>
