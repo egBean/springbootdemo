@@ -4,6 +4,10 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 顺序：环绕前，before，环绕后，after。
@@ -19,29 +23,22 @@ public class HelloControllerAspectj {
 
     @Around("m1()")
     public Object around(ProceedingJoinPoint point){
+
         Object result = null;
-        System.out.println("start....");
-
-        Object[] args = point.getArgs();
-
-        if(args[0].equals("stop")){
-            return "stop";
-        }
-
         try {
-            Object proceed = point.proceed();
-            result = proceed;
+            result = point.proceed();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-
         System.out.println("end");
-
         return result;
 
     }
     @Before("m1()")
     public void before(JoinPoint pjp){
+        Object[] args = pjp.getArgs();
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = (HttpServletRequest) requestAttributes.resolveReference(RequestAttributes.REFERENCE_REQUEST);
         System.out.println("before");
     }
 

@@ -44,6 +44,7 @@ public class HelloController {
 
 
     @GetMapping("/a")
+    @ResponseBody
     public String index(String type){
         /*jedisUtil.set("boot","tttt");
         System.out.println(jedisUtil.get("boot"));
