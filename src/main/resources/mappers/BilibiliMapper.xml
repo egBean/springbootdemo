@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bootstrap.mapper.BilibiliMapper">
+  <resultMap id="BaseResultMap" type="bootstrap.domain.Bilibili">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="av_id" jdbcType="INTEGER" property="avId" />
+    <result column="view" jdbcType="INTEGER" property="view" />
+    <result column="danmaku" jdbcType="INTEGER" property="danmaku" />
+    <result column="reply" jdbcType="INTEGER" property="reply" />
+    <result column="favorite" jdbcType="INTEGER" property="favorite" />
+    <result column="coin" jdbcType="INTEGER" property="coin" />
+    <result column="share" jdbcType="INTEGER" property="share" />
+    <result column="like" jdbcType="INTEGER" property="like" />
+  </resultMap>
+</mapper>
