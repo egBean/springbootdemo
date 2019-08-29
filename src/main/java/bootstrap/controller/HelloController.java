@@ -1,6 +1,7 @@
 package bootstrap.controller;
 
 import bootstrap.domain.People;
+import bootstrap.eventpubandlisten.DemoEvent;
 import bootstrap.mapper.PeopleMapper;
 import bootstrap.util.JedisUtil;
 import com.alibaba.fastjson.JSON;
@@ -12,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.env.Environment;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -39,8 +41,20 @@ public class HelloController {
     private JedisUtil jedisUtil;
     @Autowired
     private Environment environment;
+    @Autowired
+    private ApplicationEventPublisher publisher;
 
     private static final Logger LOGGER = LoggerFactory.getLogger("testLogger");
+
+
+    @GetMapping("/publish")
+    @ResponseBody
+    public String publish(){
+        System.out.println(Thread.currentThread().getName());
+        DemoEvent event = new DemoEvent(p);
+        publisher.publishEvent(event);
+        return "succ";
+    }
 
 
     @GetMapping("/a")
