@@ -2,10 +2,11 @@ package demo;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
+import java.util.stream.LongStream;
 
 public class ForkJoinPoolDemo2 {
     public static void main(String[] args) {
-        long[] numbers = new long[]{1,2,4,5,6,4};
+        long[] numbers = LongStream.rangeClosed(1,100).toArray();
         System.out.println(new ForkJoinPool().invoke(new ForkJoinSumCalculator(numbers)));;
     }
 }
