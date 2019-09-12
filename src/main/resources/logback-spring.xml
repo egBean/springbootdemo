@@ -208,10 +208,8 @@
 
 
     <!--myibatis log configure-->
-    <logger name="com.apache.ibatis" level="TRACE"/>
-    <logger name="java.sql.Connection" level="DEBUG"/>
-    <logger name="java.sql.Statement" level="DEBUG"/>
-    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    <logger name="jdbc" level="WARN" />
+    <logger name="jdbc.sqltiming" level="DEBUG" />
 
     <springProfile name="dev">
         <!--<logger name="testLogger" level="debug" >
