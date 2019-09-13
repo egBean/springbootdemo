@@ -43,6 +43,7 @@ public class AppConfig extends WebMvcConfigurationSupport {
         ds.setUsername(username);
         ds.setPassword(password);
         ds.setDriverClassName(driverName);
+        ds.setMaxActive(200);
         return ds;
 
     }

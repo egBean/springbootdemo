@@ -208,10 +208,11 @@
 
 
     <!--myibatis log configure-->
-    <logger name="jdbc" level="WARN" />
-    <logger name="jdbc.sqltiming" level="DEBUG" />
+
+    <logger name="bootstrap.mapper" level="DEBUG" />
 
     <springProfile name="dev">
+        <!--<logger name="jdbc.sqltiming" level="DEBUG" />-->
         <!--<logger name="testLogger" level="debug" >
             <appender-ref ref="test"/>
             &lt;!&ndash;<appender-ref ref="CONSOLE"/>&ndash;&gt;
