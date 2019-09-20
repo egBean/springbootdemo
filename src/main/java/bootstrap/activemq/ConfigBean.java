@@ -27,7 +27,6 @@ public class ConfigBean {
         JmsTemplate template = new JmsTemplate(connectionFactory);
         template.setPubSubDomain(false);
         template.setDeliveryMode(2);
-        template.setConnectionFactory(connectionFactory);
         template.setSessionAcknowledgeMode(2);
         template.setSessionTransacted(false);
         return template;
