@@ -7,7 +7,7 @@ public class User implements Serializable {
     @Id
     private Long id;
 
-    private String user;
+    private String username;
 
     private String password;
 
@@ -29,18 +29,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @return user
-     */
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    /**
-     * @param user
-     */
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**
