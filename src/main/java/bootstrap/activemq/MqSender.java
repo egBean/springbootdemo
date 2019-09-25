@@ -9,7 +9,7 @@ import javax.jms.Queue;
 import java.util.UUID;
 
 
-@Component
+//@Component
 public class MqSender {
 
     @Autowired

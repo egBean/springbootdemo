@@ -15,7 +15,7 @@ import javax.jms.ConnectionFactory;
 import javax.jms.Queue;
 
 @Component
-@EnableJms
+//@EnableJms
 public class ConfigBean {
 
     @Value("${queue1}")
@@ -26,7 +26,7 @@ public class ConfigBean {
         return new ActiveMQQueue(queue1);
     }
 
-    @Bean
+    //@Bean
     public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory) {
         Object connectionFactory1 = ((JmsPoolConnectionFactory) connectionFactory).getConnectionFactory();
         //((ActiveMQConnectionFactory)connectionFactory1).setUseAsyncSend(true);
@@ -43,7 +43,7 @@ public class ConfigBean {
         return template;
     }
 
-    @Bean("jmsListener")
+    //@Bean("jmsListener")
     public JmsListenerContainerFactory<?> jmsListenerContainerQueue(ConnectionFactory connectionFactory){
         DefaultJmsListenerContainerFactory bean = new DefaultJmsListenerContainerFactory();
         bean.setSessionTransacted(false);
