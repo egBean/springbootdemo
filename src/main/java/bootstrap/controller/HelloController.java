@@ -1,14 +1,13 @@
 package bootstrap.controller;
 
+import bootstrap.annotations.ApiNeedLogin;
 import bootstrap.domain.People;
 import bootstrap.eventpubandlisten.DemoEvent;
 import bootstrap.mapper.PeopleMapper;
 import bootstrap.util.JedisUtil;
-import com.alibaba.fastjson.JSON;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +58,7 @@ public class HelloController {
 
     @GetMapping("/a")
     @ResponseBody
+    @ApiNeedLogin("abc")
     public String index(String type){
         /*jedisUtil.set("boot","tttt");
         System.out.println(jedisUtil.get("boot"));
