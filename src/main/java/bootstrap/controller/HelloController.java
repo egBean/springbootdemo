@@ -75,11 +75,15 @@ public class HelloController {
      * transactional 注解的timeout属性，是指最后一个sql语句开始的时间距离方法开始的时间+sql本身执行的时间(待测试)
      * @return
      */
-    @GetMapping("/")
+    @GetMapping("/index")
     @ResponseBody
-    @Transactional
     public String log(){
         return "index";
+    }
+    @GetMapping("/user")
+    @ResponseBody
+    public String user(){
+        return "user";
     }
     @GetMapping("/leaf")
     public ModelAndView leaf(){
