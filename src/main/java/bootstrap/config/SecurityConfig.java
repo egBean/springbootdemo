@@ -39,16 +39,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-//      http.authorizeRequests().
-//                antMatchers("/css/**","/index").authenticated()
-//                //判断角色是最基本与简单的判断，一般内存模式可以这么做。如果使用jdbc，最好是用户对应多个角色，一个角色又对应多种权限
-//                //这样通过数据库将一个角色的所有权限都拿到，在userdetails接口中实现。
-//                .antMatchers("/user/**").hasAnyAuthority("NORMAL")/*.hasAnyRole(*//*new String[]{"NORMAL","USER"}*//*"NORMAL","USER")*/
-//                .and().formLogin()/*.loginPage("/login").failureUrl("/login-error")*/;
-        http.requestMatchers().anyRequest().and().authorizeRequests()
+        /**
+         * 判断角色是最基本与简单的判断，一般内存模式可以这么做。如果使用jdbc，最好是用户对应多个角色，一个角色又对应多种权限
+         *这样通过数据库将一个角色的所有权限都拿到，在userdetails接口中实现。
+         * csrf不禁用会导致所有post提交都被拦截。
+         */
+
+        http.csrf().disable().requestMatchers().anyRequest().and().authorizeRequests()
                 .antMatchers("/index").hasAuthority("ADMIN")
-                .antMatchers("/login/**").permitAll()
-                .and().formLogin();
+                .and().formLogin().and().addFilter(new JWTAuthenticationFilter(authenticationManager()));
     }
 
     @Autowired
