@@ -19,7 +19,7 @@ public class MyUserDetails implements UserDetails {
         set.add(new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                return "NORMAL";
+                return user.getRole();
             }
         });
         return set;
