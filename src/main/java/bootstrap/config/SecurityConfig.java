@@ -48,8 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.requestMatchers().anyRequest().and().authorizeRequests()
                 .antMatchers("/**").authenticated()
                 .antMatchers("/login/**").permitAll()
-                /*.and().formLogin()*/.and().addFilter(new JWTLoginFilter(authenticationManager()))
-                .addFilter(new JWTAuthenticationFilter(authenticationManager()));
+                .and().formLogin();
     }
 
     @Autowired
