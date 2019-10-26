@@ -1,6 +1,11 @@
-boot demo
-#生成https签名
-keytool -genkey -alias tomcathttps -keyalg RSA -keysize 2048 -keystore d://sang.p12 -validity 365
+keytool -genkeypair -alias alias -keyalg RSA -keystore key.keystore -storepass storepass
+一个keystore可以存储很多的公私钥key。
+keytool -list -keystore key.keystore 查看keystore
+keytool -delete -alias alias2 -keystore key.keystore
+
+下载安装openssl，配置环境变量，执行如下代码导出publicKey。
+keytool -list -rfc --keystore key.keystore | openssl x509 -inform pem -pubkey
+
 
 
 关于spring 注解的一些解释
