@@ -33,6 +33,24 @@
         </encoder>
     </appender>
 
+    <appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <!--  这是是logstash服务器地址 端口-->
+        <destination>127.0.0.1:4567</destination>
+        <!--输出的格式，推荐使用这个-->
+         
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <providers>
+                <timestamp/>
+                <version/>
+                <message/>
+                <loggerName/>
+                <threadName/>
+                <logLevel/>
+                <callerData/>
+            </providers>
+        </encoder>
+    </appender>
+
 
     <!--输出到文件-->
 
@@ -219,6 +237,7 @@
         </logger>-->
         <root level="info">
             <appender-ref ref="CONSOLE" />
+            <appender-ref ref="stash" />
         </root>
     </springProfile>
     <springProfile name="pro">

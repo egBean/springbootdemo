@@ -27,6 +27,8 @@ import javax.sql.DataSource;
 @Controller
 @Api("hello类测试")
 public class HelloController {
+
+    private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
     
     @Autowired
     private PeopleMapper peopleMapper;
@@ -78,6 +80,9 @@ public class HelloController {
     @GetMapping("/index")
     @ResponseBody
     public String log(){
+        logger.info("test elk");
+        logger.warn("warn elk ....");
+        logger.error("error elk ...........");
         return "index";
     }
     @GetMapping("/user")
