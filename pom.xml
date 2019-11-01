@@ -198,6 +198,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.43.Final</version>
+        </dependency>
+
         <!--swagger-->
         <dependency>
             <groupId>io.springfox</groupId>
