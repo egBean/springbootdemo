@@ -10,7 +10,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public class TimeServer {
     public static void main(String[] args) throws Exception {
         NioEventLoopGroup bossGroup =new NioEventLoopGroup(1);
-        NioEventLoopGroup workerGroup = new NioEventLoopGroup(Runtime.getRuntime().availableProcessors());
+        NioEventLoopGroup workerGroup = new NioEventLoopGroup();
         try{
             ServerBootstrap server = new ServerBootstrap();
             server.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class) // (3)
