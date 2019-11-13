@@ -192,11 +192,11 @@
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <scope>provided</scope>
-        </dependency>-->
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
         <dependency>
